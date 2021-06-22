@@ -17,7 +17,8 @@ class DeployController extends Controller
         if (hash_equals($githubHash, $localHash)) {
             $root_path = base_path();
             // $process = new Process('cd /root/web-app || git pull');
-            $process = new Process(['cd',$root_path,'sudo','./deploy.sh']);
+            $process = new Process(['cd',$root_path]);
+            $process = new Process(['sudo','./deploy.sh']);
             // $process = new Process([' git -C /root/web-app/ pull origin master']);
             $process->run(function ($type, $buffer) {
                 echo $buffer;
