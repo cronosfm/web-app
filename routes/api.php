@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('deploy', 'DeployController@deploy');
+Route::resource('instrument', InstrumentController::class);
