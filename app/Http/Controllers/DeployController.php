@@ -15,10 +15,10 @@ class DeployController extends Controller
         $localToken = config('app.deploy_secret');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
         if (hash_equals($githubHash, $localHash)) {
-            // $root_path = base_path();
-            // $process = new Process(['cd ' . $root_path .'; sudo ./deploy.sh']);
+            $root_path = base_path();
             // $process = new Process('cd /root/web-app || git pull');
-            $process = new Process([' git -C /root/web-app/ pull origin master']);
+            $process = new Process(['cd',$root_path,'sudo','./deploy.sh']);
+            // $process = new Process([' git -C /root/web-app/ pull origin master']);
             $process->run(function ($type, $buffer) {
                 echo $buffer;
             });
