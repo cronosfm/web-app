@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravela
+                    Laravel chido
                 </div>
 
                 <div class="links">
