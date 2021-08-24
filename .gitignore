@@ -6,11 +6,14 @@
 .env
 .env.backup
 .phpunit.result.cache
+docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/.idea
+/.vscode
+public/js/app.js
+public/images
 
-*.sh
-serverappkey
-serverappkey.pub
+public/Tracks

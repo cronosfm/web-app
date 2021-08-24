@@ -1,0 +1,28 @@
+body {
+    margin: 0px;
+}
+
+.main {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns:  12.5% 87.5%;
+    grid-template-rows: 90.5vh 9.5vh;
+}
+
+#menu {
+    background-color: black;
+    grid-column-start: 1;
+}
+
+#contenido {
+    background-color: rgba(17, 17, 17, 0.96);
+    grid-column-start: 2;
+}
+
+#reproductor {
+    background-color: rgba(17, 17, 17, 0.96);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    grid-column-start: 1;
+    grid-column-end: 3;
+}

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PlayController;
+use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::post("/auth/login" , [UserAuthController::class , "Login"]);
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get("/" , [PlayController::class , "index"]);    
+
+Route::get("/login" , function() {
+    return view("auth/login");
+})->name("login");
+
+Route::get("/register" , function() {
+    return view("auth/register");
+});
+
+
+Route::group(["middleware" => "auth"] , function()
+{
+    
 });

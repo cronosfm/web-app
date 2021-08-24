@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "719fec1d-62e3-4719-b84e-5ca47058b8ea",
+		"name": "LaravelSpoto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registro",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "email@email.coms",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "contraseña",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "usuario",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "2021/06/06",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "dsadsadsasdasdasdadsa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_SERVIDOR}}/api/register",
+							"host": [
+								"{{URL_SERVIDOR}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "email@email.coms",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "contraseña",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "usuario",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_SERVIDOR}}/api/login",
+							"host": [
+								"{{URL_SERVIDOR}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "email@email.coms",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "contraseña",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "usuario",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_SERVIDOR}}/api/logout",
+							"host": [
+								"{{URL_SERVIDOR}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Resources",
+			"item": [
+				{
+					"name": "Genres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_SERVIDOR}}/api/genres",
+							"host": [
+								"{{URL_SERVIDOR}}"
+							],
+							"path": [
+								"api",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "trackrecs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_SERVIDOR}}/api/tracks/recs",
+							"host": [
+								"{{URL_SERVIDOR}}"
+							],
+							"path": [
+								"api",
+								"tracks",
+								"recs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StoreTrack",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "Application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "album_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Forgotten Past",
+									"type": "text"
+								},
+								{
+									"key": "track_file",
+									"type": "file",
+									"src": "/D:/Music/Death (mp3)/01 - Studio albums/1988 - Leprosy [88561-8248-2]/03. Forgotten Past.mp3"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_SERVIDOR}}/api/tracks",
+							"host": [
+								"{{URL_SERVIDOR}}"
+							],
+							"path": [
+								"api",
+								"tracks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindTrack",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "Application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "album_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mutilation",
+									"type": "text"
+								},
+								{
+									"key": "track_file",
+									"type": "file",
+									"src": "/D:/Music/Death (mp3)/01 - Studio albums/1987 - Scream Bloody Gore [88561-8146-2]/05. Mutilation.mp3"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_SERVIDOR}}/api/tracks/find/2",
+							"host": [
+								"{{URL_SERVIDOR}}"
+							],
+							"path": [
+								"api",
+								"tracks",
+								"find",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StoreAlbum",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "Application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "artist_id",
+							"value": "18",
+							"type": "text"
+						},
+						{
+							"key": "genre_id",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Music/Death (mp3)/01 - Studio albums/1988 - Leprosy [88561-8248-2]/Front.jpg"
+						},
+						{
+							"key": "name",
+							"value": "Leprosy",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL_SERVIDOR}}/api/albums/store",
+					"host": [
+						"{{URL_SERVIDOR}}"
+					],
+					"path": [
+						"api",
+						"albums",
+						"store"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
