@@ -4,6 +4,7 @@ use App\Http\Controllers\AlbumsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeployController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\PlaylistsController;
 use App\Http\Controllers\TracksController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\TracksController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('deploy', [DeployController::class , "deploy"]);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
