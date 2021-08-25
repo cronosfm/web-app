@@ -38,5 +38,5 @@ Route::get("/register" , function() {
 
 Route::group(["middleware" => "auth"] , function()
 {
-    
+    Route::post("/logout" , [UserAuthController::class , "Logout"])->name("logout");
 });
