@@ -4,7 +4,7 @@ return [
 
     'deploy_secret' => env('APP_DEPLOY_SECRET'),   
 
-
+    "server_namerino" => env("SERVER_NAME" , "UNK") , 
     /*
     |--------------------------------------------------------------------------
     | Application Name

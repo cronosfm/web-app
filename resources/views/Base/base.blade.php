@@ -16,7 +16,8 @@
         @endguest
         @yield("estilo")
 
-        <title> Spoto </title>
+        
+        <title> {{ config("app.server_namerino") }} </title>
     </head>
     <body >
         <div id="app">
