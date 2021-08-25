@@ -1,4 +1,4 @@
-@extends("base.base")
+@extends("base")
 @section("contenido")
   <form class="register" action="/auth/register" method="post">
     @csrf
