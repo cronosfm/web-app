@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post("/auth/login" , [UserAuthController::class , "Login"]);
 
+Route::post("/auth/register" , [UserAuthController::class , "Register"]);
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -30,11 +32,11 @@ Route::get("/login" , function() {
 })->name("login");
 
 Route::get("/register" , function() {
-    return view("auth/register");
-});
+    return view("register");
+})->name("register");
 
 
 Route::group(["middleware" => "auth"] , function()
 {
-    
+    Route::post("/logout" , [UserAuthController::class , "Logout"])->name("logout");
 });
