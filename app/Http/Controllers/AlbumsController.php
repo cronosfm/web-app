@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class AlbumsController extends Controller
 {
-    //
+    ////
     public function Index()
     {
         $Cosas = Album::all();
