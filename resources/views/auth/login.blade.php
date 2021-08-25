@@ -1,4 +1,4 @@
-@extends("Base.base")
+@extends("base.base")
 @section("contenido")
 <form class="login" action="/auth/login" method="post">
 @csrf
@@ -56,7 +56,7 @@
       <h3>¿No tienes cuenta?</h3>
       <div id="cent">
         <div id="suscribete">
-          <h4>SUSCRÍBETE A SPOTIFY</h4>
+          <a href="/register">SUSCRÍBETE A SPOTIFY</a>
         </div>
       </div>
     </div>
