@@ -137,8 +137,27 @@ class DatabaseSeeder extends Seeder
             $TORN =  new Track();
             $TORN->album_id = $SBG->id;
             $TORN->name = "Torn To Pieces";
-            $TORN->storage_url = "Tracks/32131313213223131.mp3";
+            $TORN->storage_url = "Tracks/08. Torn To Pieces.mp3";
             $TORN->save();
+
+            $SCREAMB =  new Track();
+            $SCREAMB->album_id = $SBG->id;
+            $SCREAMB->name = "Scream Bloody Gore";
+            $SCREAMB->storage_url = "Tracks/XJQr7VS9RPfozTNTAlFXRKRLDM6B5kzZGQmKGFAP.mp3";
+            $SCREAMB->save();
+
+            $EVILDEAD =  new Track();
+            $EVILDEAD->album_id = $SBG->id;
+            $EVILDEAD->name = "Evil Dead";
+            $EVILDEAD->storage_url = "Tracks/HKmnl5mBOac718caEQ5yjT1SMSgYLuq5RgL66dh2.mp3";
+            $EVILDEAD->save();
+
+            $MUTILATION =  new Track();
+            $MUTILATION->album_id = $SBG->id;
+            $MUTILATION->name = "Mutilation";
+            $MUTILATION->storage_url = "Tracks/ry3DQVe03XBgBs8xEuTVp97MuX2tOllUXFvFnViZ.mp3";
+            $MUTILATION->save();
+
         });
     }
 }
