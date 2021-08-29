@@ -14,7 +14,7 @@ class AlbumsController extends Controller
     ////
     public function Index()
     {
-        $Cosas = Album::with("tracks")->all();
+        $Cosas = Album::with("tracks")->get();
 
         return response()->json($Cosas , 200);
     }
