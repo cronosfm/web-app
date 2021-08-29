@@ -14,7 +14,7 @@ class AlbumsController extends Controller
     ////
     public function Index()
     {
-        $Cosas = Album::all();
+        $Cosas = Album::with("tracks")->all();
 
         return response()->json($Cosas , 200);
     }
@@ -47,5 +47,10 @@ class AlbumsController extends Controller
         });
 
         return response()->json($Nuevo , 200);
+    }
+
+    public function Find($id)
+    {
+        return Album::findOrFail($id);
     }
 }

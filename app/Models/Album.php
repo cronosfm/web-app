@@ -9,4 +9,9 @@ class Album extends Model
 {
     protected $table = "albums";
     use HasFactory;
+
+    public function Tracks()
+    {
+        return $this->hasMany(Track::class , "album_id" , "id");
+    }
 }

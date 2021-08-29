@@ -11,4 +11,9 @@ class PlaylistsController extends Controller
     {
         return Playlist::all();
     }
+
+    public function Find($id)
+    {
+        return Playlist::findOrFail($id);
+    }
 }
