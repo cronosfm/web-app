@@ -58,6 +58,13 @@ import PerfilComponent from "./PerfilComponent.vue";
 import ListSavedComponent from "./ListSavedComponent.vue";
 import PlaylistComponent from "./PlaylistComponent.vue";
 import PlayerComponent  from "./PlayerComponent.vue";
+import CurrentComponent from "./CurrentComponent.vue";
+import CurrentConfigComponent from "./CurrentConfig.vue";
+import InicioViewComponent from "./InicioViewComponent.vue";
+import BuscarViewComponent from "./BuscarViewComponent.vue";
+import BibliotecaViewComponent from "./BibliotecaViewComponent.vue";
+import CrearListaComponent from "./CrearListaComponent.vue";
+import ListaComponent from "./ListComponent.vue";
 
 export default {
   props : ["username"] , 
@@ -67,7 +74,12 @@ export default {
     return {
       generos : [] , 
       recomendaciones : [] ,
-      cancion_actual : ""
+      cancion_actual : "" , 
+      inicio: true,
+      buscar: false,
+      biblioteca: false,
+      crear_lista: false,
+      lista:false,
     }
   },
   components: {
@@ -105,6 +117,42 @@ export default {
     ReproducirGenero()
     {
       return null;
+    }
+    ,
+    inicioView() {
+      this.inicio = true;
+      this.buscar = false;
+      this.biblioteca = false;
+      this.crear_lista = false;
+      this.lista = false;
+    },
+    busquedaView() {
+      this.inicio = false;
+      this.buscar = true;
+      this.biblioteca = false;
+      this.crear_lista = false;
+      this.lista = false;
+    },
+    bibliotecaView() {
+      this.inicio = false;
+      this.buscar = false;
+      this.biblioteca = true;
+      this.crear_lista = false;
+      this.lista = false;
+    },
+    crearListaView(){
+      this.inicio = false;
+      this.buscar = false;
+      this.biblioteca = false;
+      this.crear_lista = true;
+      this.lista = false;
+    },
+    listaView(){
+      this.inicio = false;
+      this.buscar = false;
+      this.biblioteca = false;
+      this.crear_lista = false;
+      this.lista = true;
     }
   }
   ,
