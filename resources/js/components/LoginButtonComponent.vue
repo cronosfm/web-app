@@ -1,19 +1,19 @@
 <template>
   <div class="container-menu">
     <div id="facebook">
-      <img src="/img/perfil.jpg" />
+      <img src="/images/perfil.jpg" />
       <h4>CONTINUAR CON FACEBOOK</h4>
     </div>
     <div id="apple">
-      <img src="/img/perfil.jpg" />
+      <img src="/images/perfil.jpg" />
       <h4>CONTINUAR CON APPLE</h4>
     </div>
     <div id="google">
-      <img src="/img/perfil.jpg" />
+      <img src="/images/perfil.jpg" />
       <h4>CONTINUAR CON GOOGLE</h4>
     </div>
     <div id="telefono">
-      <img src="/img/perfil.jpg" />
+      <img src="/images/perfil.jpg" />
       <h4>CONTINUAR CON NÚMERO DE TELÉFONO</h4>
     </div>
   </div>

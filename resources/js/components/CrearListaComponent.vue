@@ -7,7 +7,7 @@
       <PerfilComponent name="Angel Rodriguez"></PerfilComponent>
     </div>
     <div id="titlebar">
-      <img src="/img/Album.jpg" class="image" />
+      <img src="/images/Album.jpg" class="image" />
       <div id="titletext">
         <a id="h6">PlayList</a>
         <a id="h1">Mi lista n.°16</a>

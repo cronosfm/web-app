@@ -1,6 +1,6 @@
 <template>
   <div class="current-card">
-    <img src="/img/Album.jpg" class="image" />
+    <img src="/images/Album.jpg" class="image" />
     <div id="textos">
       <p id="current-text">{{ name }}</p>
       <p id="current-text2">{{ author }}</p>

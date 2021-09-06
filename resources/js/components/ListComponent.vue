@@ -7,7 +7,7 @@
       <PerfilComponent name="Angel Rodriguez"></PerfilComponent>
     </div>
     <div id="titlebars">
-      <img src="/img/Album.jpg" class="image" />
+      <img src="/images/Album.jpg" class="image" />
       <div id="titletext">
         <a id="h6">PlayList</a>
         <a id="h1">Canciones que te gustan</a>
@@ -31,7 +31,7 @@
           <tr>
             <td>1</td>
             <td id="titlelist">
-              <img src="/img/Album.jpg" class="image2" />
+              <img src="/images/Album.jpg" class="image2" />
               <div id="titlesList">
                 <a>Si tú no estás aqui</a>
                 <a>Ángeles Del Infierno</a>
@@ -44,7 +44,7 @@
           <tr>
             <td>2</td>
             <td id="titlelist">
-              <img src="/img/Album.jpg" class="image2" />
+              <img src="/images/Album.jpg" class="image2" />
               <div id="titlesList">
                 <a>Waste of Time</a>
                 <a>Snow Tha Product</a>

@@ -1,6 +1,6 @@
 <template>
   <div class="album">
-    <img src="/img/Album.jpg" class="image" />
+    <img src="/images/Album.jpg" class="image" />
     <h3 id="text">{{ name }}</h3>
     <div id="boton">
       <p id="textbutton">►</p>
