@@ -119,14 +119,6 @@ export default {
   
   methods : 
   {
-    conseguirGeneros()
-    {
-      axios.get("/api/genres")
-      .then(response => {
-        this.generos = response.data;
-        console.log(this.generos);
-      })
-    } , 
     conseguirRecs()
     {
       axios.get("/api/tracks/recs")

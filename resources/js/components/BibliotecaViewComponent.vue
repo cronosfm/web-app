@@ -9,30 +9,12 @@
         </div>
         <h1>¡Buenas tardes!</h1>
         <div id="middle-up">
-          <PlaylistComponent class="CardComp" name="Rap"></PlaylistComponent>
-          <PlaylistComponent class="CardComp" name="Rock"></PlaylistComponent>
-          <PlaylistComponent class="CardComp" name="Pop"></PlaylistComponent>
           <PlaylistComponent
-            class="CardComp"
-            name="Baladas"
-          ></PlaylistComponent>
-          <PlaylistComponent class="CardComp" name="Salsa"></PlaylistComponent>
-          <PlaylistComponent
-            class="CardComp"
-            name="Cumbias"
-          ></PlaylistComponent>
-          <PlaylistComponent
-            class="CardComp"
-            name="Rancheras"
-          ></PlaylistComponent>
-          <PlaylistComponent
-            class="CardComp"
-            name="Flamenco"
-          ></PlaylistComponent>
-          <PlaylistComponent
-            class="CardComp"
-            name="Electronica"
-          ></PlaylistComponent>
+            v-for="desu in generos"
+            v-bind:key="desu.id"
+            class="CardComp" 
+            v-bind:name="desu.name"></PlaylistComponent>
+          
         </div>
         <h1>Recomendaciones:</h1>
         <div id="middle">
@@ -59,7 +41,9 @@ import BibliotecaComponent from "./BibliotecaMenuComponent.vue";
 
 export default {
   data() {
-    return {}
+    return {
+      generos : []
+    }
   },
   components:{      
     CardComponent,
@@ -67,6 +51,17 @@ export default {
     SelectButtonComponent,
     PerfilComponent,
     BibliotecaComponent,
+  }
+  ,
+  methods: {
+    conseguirGeneros()
+    {
+      axios.get("/api/genres")
+      .then(response => {
+        this.generos = response.data;
+        console.log(this.generos);
+      })
+    } , 
   }
 };
 </script>
