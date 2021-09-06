@@ -4,7 +4,7 @@
     <div id="top-left">
       <SelectButtonComponent> </SelectButtonComponent>
     </div>
-    <PerfilComponent name="Angel Rodriguez"></PerfilComponent>
+    <PerfilComponent v-bind:name="username" ></PerfilComponent>
   </div>
   <h1>¡Buenas tardes!</h1>
   <div id="middle-up">
@@ -41,7 +41,12 @@ import SelectButtonComponent from "./SelectButtonComponent.vue";
 import PerfilComponent from "./PerfilComponent.vue";
 
 export default {
-  data() {},
+  props: 
+  ["username"]
+  ,
+  data() {
+    return {}
+  },
   components: {
     CardComponent,
     PlaylistComponent,

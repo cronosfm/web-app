@@ -58,7 +58,9 @@ import PerfilComponent from "./PerfilComponent.vue";
 import SearchComponent from "./SearchComponent.vue";
 
 export default {
-  data() {},
+  data() {
+    return {}
+  },
   components:{      
     CardComponent,
     PlaylistComponent,    

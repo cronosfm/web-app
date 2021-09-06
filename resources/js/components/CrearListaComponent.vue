@@ -39,7 +39,9 @@
 import SelectButtonComponent from "./SelectButtonComponent.vue";
 import PerfilComponent from "./PerfilComponent.vue";
 export default {
-  data() {},
+  data() {
+    return {}
+  },
   components: {
     SelectButtonComponent,
     PerfilComponent,
@@ -60,7 +62,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding-left: 20px;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 0px;
 }
 #titletext #h6 {

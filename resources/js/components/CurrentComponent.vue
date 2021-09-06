@@ -15,7 +15,9 @@
 <script>
 export default {
   props: ["name", "author", "image"],
-  data() {},
+  data() {
+    return {}
+  },
 };
 </script>
 
