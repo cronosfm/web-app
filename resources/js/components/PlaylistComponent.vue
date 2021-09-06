@@ -1,7 +1,7 @@
 <template>
   <div class="album">
-    <img v-bind:src="imagen" class="image" />
-    <h3 id="text">{{ nombre }}</h3>
+    <img src="/img/Album.jpg" class="image" />
+    <h3 id="text">{{ name }}</h3>
     <div id="boton">
       <p id="textbutton">►</p>
     </div>
@@ -10,13 +10,10 @@
 
 <script>
 export default {
-  props: ["genero"],
+  props: ["name", "image"],
   data() {
-    return {
-      nombre : this.genero.name , 
-      imagen : "/" +  this.genero.image_url
-    }
-  }
+    return {}
+  },
 };
 </script>
 

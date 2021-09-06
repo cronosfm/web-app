@@ -1,15 +1,31 @@
 <template>
-  <div class="main">
+ <div class="main">
     <div id="menu">
       <IconLogoComponent></IconLogoComponent>
-      <MenuComponent name="Inicio" icon="|H|"></MenuComponent>
-      <MenuComponent name="Buscar" icon="|O|"></MenuComponent>
-      <MenuComponent name="Tu biblioteca" icon="|M|"></MenuComponent>
+      <MenuComponent
+        name="Inicio"
+        icon="|H|"
+        v-on:click="inicioView"
+      ></MenuComponent>
+      <MenuComponent
+        name="Buscar"
+        icon="|O|"
+        v-on:click="busquedaView"
+      ></MenuComponent>
+      <MenuComponent
+        name="Tu biblioteca"
+        icon="|M|"
+        v-on:click="bibliotecaView"
+      ></MenuComponent>
       <br />
-      <MenuComponent name="Crear lista" icon="|+|"></MenuComponent>
-      <MenuComponent name="Canciones que te gustan" icon="|♥|"></MenuComponent>
-      <MenuComponent name="Tus episodios" icon="|8|"></MenuComponent>
-      <hr>
+      <MenuComponent
+        name="Crear lista"
+        icon="|+|"
+        v-on:click="crearListaView"
+      ></MenuComponent>
+      <MenuComponent name="Canciones que te gustan" icon="|♥|" v-on:click="listaView"></MenuComponent>
+      <MenuComponent name="Tus episodios" icon="|8|" v-on:click="listaView"></MenuComponent>
+      <hr />
       <list-saved-component name="cumbias"></list-saved-component>
       <list-saved-component name="rock"></list-saved-component>
       <list-saved-component name="ska"></list-saved-component>
@@ -17,34 +33,30 @@
       <list-saved-component name="rap"></list-saved-component>
     </div>
     <div id="contenido">
-      <div id="top">
-        <SelectButtonComponent> </SelectButtonComponent>
-        <PerfilComponent v-bind:name="username"></PerfilComponent>
-      </div>
-      <h1>¡Buenas tardes!</h1>
-      <div id="middle-up">
-      <PlaylistComponent 
-      v-for="desu in generos"
-      v-bind:key="desu.id"
-      v-bind:genero="desu"
-       class="CardComp"></PlaylistComponent>
-      
-      </div>
-      <h1>Recomendaciones:</h1>
-      <div id="middle">
-      <CardComponent
-        v-on:click.native="ReproducirCancion(desu)"
-        v-for="desu in recomendaciones" 
-        v-bind:key="desu.track_id"
-        v-bind:name="desu.track_name"
-        v-bind:author="desu.artist_name"
-        v-bind:image="desu.album_url"
-        class="CardComp"></CardComponent>
-      
-      </div>
+    <div v-show="inicio">
+      <InicioViewComponent v-bind:username="username" ></InicioViewComponent>
+    </div>
+    <div v-show="buscar">
+      <BuscarViewComponent></BuscarViewComponent>
+    </div>
+    <div v-show="biblioteca">
+      <BibliotecaViewComponent></BibliotecaViewComponent>      
+    </div>
+    <div v-show="crear_lista">
+      <CrearListaComponent></CrearListaComponent>
+    </div>
+    <div v-show="lista">
+      <ListaComponent></ListaComponent>
+    </div>
+
     </div>
     <div id="reproductor">
-      <PlayerComponent v-bind:track_url="cancion_actual"></PlayerComponent>
+      <current-component
+        name="Vientos del Sur"
+        author="Avalanch"
+      ></current-component>
+      <PlayerComponent> </PlayerComponent>
+      <current-config-component></current-config-component>
     </div>
   </div>
 </template>
@@ -91,6 +103,18 @@ export default {
     ListSavedComponent,
     PlaylistComponent,
     PlayerComponent,
+    MenuComponent,
+    IconLogoComponent,
+    ListSavedComponent,
+    CurrentComponent,
+    PlayerComponent,
+    CurrentConfigComponent,
+
+    InicioViewComponent,
+    BuscarViewComponent,
+    BibliotecaViewComponent,
+    CrearListaComponent,
+    ListaComponent,
   },
   
   methods : 
@@ -163,7 +187,6 @@ export default {
   }
 };
 </script>
-
 <style>
 body {
   margin: 0px;
@@ -171,7 +194,7 @@ body {
 }
 hr {
   width: 80%;
-  height:1px;
+  height: 1px;
   border-width: 0px;
   border-style: inset;
   background-color: rgba(255, 255, 255, 0.616);
@@ -195,22 +218,27 @@ hr {
   grid-column-start: 2;
   overflow: scroll;
   overflow-x: unset;
-  padding: 12px 24px;
 }
 #top {
+  padding: 12px 24px;
   display: flex;
   justify-content: space-between;
+}
+#top-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #middle-up {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-
+  justify-content: flex-start;
   align-items: center;
 }
 
-#middle-up .CardComp{  
+#middle-up .CardComp {
   margin: 10px;
   align-items: center;
 }
@@ -219,11 +247,12 @@ hr {
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-#middle .CardComp{  
+#middle .CardComp {
   margin: 24px;
 }
-
 #reproductor {
+  display: flex;
+  justify-content: space-between;
   background-color: rgba(17, 17, 17, 0.96);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   grid-column-start: 1;
