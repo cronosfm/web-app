@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Models\Track;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -58,7 +59,26 @@ class TracksController extends Controller
             return $Nuevo;
         });
 
-        return response()->json($Nuevo , 200);
-    
+        return response()->json($Nuevo , 200);    
+    }
+
+    public function LikedByUser()
+    {
+        $User = Auth::user();
+
+    }
+
+    public function LikeTrack($track_id)
+    {
+        $User = Auth::user();
+
+        $Track = Track::findOrFail($track_id);
+
+        
+    }
+
+    public function UnlikeTrack()
+    {
+        
     }
 }
