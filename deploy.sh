@@ -30,5 +30,7 @@ php artisan -v queue:restart
 php artisan migrate --force
 	# --force		Required to run when in production.
 
+# Recompilar los componentes
+npm run prod
 # stop maintenance mode
 php artisan up
