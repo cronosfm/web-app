@@ -5,26 +5,26 @@
       <MenuComponent
         name="Inicio"
         icon="|H|"
-        v-on:click="inicioView"
+        v-on:click.native="inicioView()"
       ></MenuComponent>
       <MenuComponent
         name="Buscar"
         icon="|O|"
-        v-on:click="busquedaView"
+        v-on:click.native="busquedaView()"
       ></MenuComponent>
       <MenuComponent
         name="Tu biblioteca"
         icon="|M|"
-        v-on:click="bibliotecaView"
+        v-on:click.native="bibliotecaView()"
       ></MenuComponent>
       <br />
       <MenuComponent
         name="Crear lista"
         icon="|+|"
-        v-on:click="crearListaView"
+        v-on:click.native="crearListaView()"
       ></MenuComponent>
-      <MenuComponent name="Canciones que te gustan" icon="|♥|" v-on:click="listaView"></MenuComponent>
-      <MenuComponent name="Tus episodios" icon="|8|" v-on:click="listaView"></MenuComponent>
+      <MenuComponent name="Canciones que te gustan" icon="|♥|" v-on:click.native="listaView()"></MenuComponent>
+      <MenuComponent name="Tus episodios" icon="|8|" v-on:click.native="listaView()"></MenuComponent>
       <hr />
       <list-saved-component name="cumbias"></list-saved-component>
       <list-saved-component name="rock"></list-saved-component>
@@ -91,7 +91,8 @@ export default {
       buscar: false,
       biblioteca: false,
       crear_lista: false,
-      lista:false,
+      lista:false, 
+      playlists : [] ,
     }
   },
   components: {
@@ -119,11 +120,15 @@ export default {
   
   methods : 
   {
-    conseguirRecs()
+    SacarPlaylists()
     {
-      axios.get("/api/tracks/recs")
-      .then(response => {this.recomendaciones = response.data})
-    },
+       axios.get("/api/playlists")
+      .then(response => {
+        this.playlists = response.data;
+        console.log(this.playlists);
+      })
+    }
+    ,
     ReproducirCancion(cancion)
     {
       this.cancion_actual = cancion.storage_url;
@@ -150,6 +155,7 @@ export default {
       this.lista = false;
     },
     bibliotecaView() {
+      console.log("Abriendo vista de biblioteca")
       this.inicio = false;
       this.buscar = false;
       this.biblioteca = true;
@@ -174,8 +180,6 @@ export default {
   ,
   mounted() 
   {
-    this.conseguirGeneros();
-    this.conseguirRecs();
   }
 };
 </script>
