@@ -38,6 +38,15 @@ Route::group(["prefix" => "tracks"] , function ()
     Route::get("/find/{id}" , [TracksController::class , "Find"]);
     Route::get("/recs" , [TracksController::class , "RecsIndex"]);
     Route::post("/" , [TracksController::class , "Store"]);
+
+    
+    Route::group(["middleware" => "auth:api"] , function()
+    {
+        Route::get("/liked" , [TracksController::class , "LikedByUser"]);
+        Route::post("/{id}/like" , [TracksController::class , "LikeTrack"]);
+        Route::post("/{id}/unlike" , [TracksController::class , "UnlikeTrack"]);
+    });
+
 });
 
 Route::group(["prefix" => "playlists"] , function () 
