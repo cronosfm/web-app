@@ -17,16 +17,15 @@
   </div>
   <h1>Recomendaciones:</h1>
   <div id="middle">
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
-    <CardComponent class="CardComp"></CardComponent>
+    <CardComponent
+      class="CardComp"
+      v-for="desu in recomendaciones"
+      v-bind:key="desu.id"
+      v-bind:name="desu.track_name"
+      v-bind:author="desu.artist_name"
+      v-bind:image="desu.album_url"
+      ></CardComponent>
+    
   </div>
   </div>
 </template>
@@ -44,6 +43,7 @@ export default {
   data() {
     return {
       generos : [],
+      recomendaciones : [],
     }
   },
   components: {
@@ -61,12 +61,18 @@ export default {
         this.generos = response.data;
         console.log(this.generos);
       })
-    } , 
+    } ,
+    conseguirRecs()
+    {
+      axios.get("/api/tracks/recs")
+      .then(response => {this.recomendaciones = response.data})
+    }, 
   }
   ,
   mounted()
   {
     this.conseguirGeneros();
+    this.conseguirRecs();
   }
 };
 </script>
