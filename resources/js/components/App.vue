@@ -37,16 +37,20 @@
       <InicioViewComponent v-bind:username="username" ></InicioViewComponent>
     </div>
     <div v-show="buscar">
-      <BuscarViewComponent></BuscarViewComponent>
+      <BuscarViewComponent
+        v-bind:username="username"></BuscarViewComponent>
     </div>
     <div v-show="biblioteca">
-      <BibliotecaViewComponent></BibliotecaViewComponent>      
+      <BibliotecaViewComponent
+        v-bind:username="username"></BibliotecaViewComponent>      
     </div>
     <div v-show="crear_lista">
-      <CrearListaComponent></CrearListaComponent>
+      <CrearListaComponent
+        v-bind:username="username"></CrearListaComponent>
     </div>
     <div v-show="lista">
-      <ListaComponent></ListaComponent>
+      <ListaComponent
+        v-bind:username="username"></ListaComponent>
     </div>
 
     </div>

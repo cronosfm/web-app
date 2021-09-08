@@ -5,7 +5,7 @@
             <SelectButtonComponent> </SelectButtonComponent>
             <SearchComponent></SearchComponent>
           </div>
-          <PerfilComponent name="Angel Rodriguez"></PerfilComponent>
+          <PerfilComponent v-bind:name="username"></PerfilComponent>
         </div>
         <h1>¡Buenas tardes!</h1>
         <div id="middle-up">
@@ -58,6 +58,7 @@ import PerfilComponent from "./PerfilComponent.vue";
 import SearchComponent from "./SearchComponent.vue";
 
 export default {
+  props: ["username"]  ,
   data() {
     return {}
   },
