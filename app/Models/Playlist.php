@@ -19,4 +19,9 @@ class Playlist extends Model
     protected $table ="playlists";
     
     use HasFactory;
+
+    public function Tracks()
+    {
+        return $this->belongsToMany(Track::class , "playlist_tracks" , "playlist_id" , "track_id" );
+    }
 }

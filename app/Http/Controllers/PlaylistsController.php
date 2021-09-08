@@ -23,11 +23,21 @@ class PlaylistsController extends Controller
     {
         $User = Auth::user();
 
-        // AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-
         $Playlists = Playlist::where("user_id" , $User->id)
+            ->with("tracks")
             ->get();
 
         return response()->json($Playlists,200);
     }
+
+    public function SearchPlaylistsByUser($name)
+    {
+        $User = Auth::user();
+
+        $Playlists = Playlist::where("user_id" , $User->id)
+            ->where("name" , "ilike" , "%".$name."%" )
+            ->with("tracks")
+            ->get();
+        return response()->json($Playlists, 200);
+    } 
 }
