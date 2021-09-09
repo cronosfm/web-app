@@ -23,4 +23,9 @@ class Track extends Model
     {
         return $this->hasMany(TrackLike::class , "track_id" , "id");
     }
+
+    public function Album()
+    {
+        return $this->belongsTo(Album::class , "album_id" , "id" );
+    }
 }

@@ -81,4 +81,17 @@ class TracksController extends Controller
     {
         
     }
+
+    public function search(Request $request)
+    {
+        $Data = $request->validate([
+            "name" => "string | max:255 | required"
+        ]);
+
+        $Busqueda = Track::where("name" , "ilike" , "%". $Data["name"]."%")
+            ->with("album")
+            ->get();
+
+        return response()->json($Busqueda , 200);
+    }
 }

@@ -5,9 +5,14 @@ namespace Database\Seeders;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Genre;
+use App\Models\Playlist;
+use App\Models\PlaylistTrack;
 use App\Models\Track;
+use App\Models\TrackLike;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +27,14 @@ class DatabaseSeeder extends Seeder
         
         DB::transaction( function () 
         {
+            $Usuario = new User();
+            $Usuario->email = "correo@correo.com";
+            $Usuario->password = Hash::make("contraseña");
+            $Usuario->name = "Usuario";
+            $Usuario->birthday = "1997-05-05";
+            $Usuario->gender = "male";
+            $Usuario->save();
+
             $ImagenDefault = "images/DEFAULT.png";
             $ImagenJudasBanda = "images/JUDASBAND.jpg";
             $SFVALBUMART = "images/SFV_ALBUM.jpg";
@@ -157,6 +170,40 @@ class DatabaseSeeder extends Seeder
             $MUTILATION->name = "Mutilation";
             $MUTILATION->storage_url = "Tracks/ry3DQVe03XBgBs8xEuTVp97MuX2tOllUXFvFnViZ.mp3";
             $MUTILATION->save();
+
+
+            //Playlist de prueba
+
+            $PlaylistNueva = new Playlist();
+            $PlaylistNueva->user_id = $Usuario->id;
+            $PlaylistNueva->image_url = $ImagenDefault;
+            $PlaylistNueva->name = "Para el Gym";
+            $PlaylistNueva->save();
+
+            $Rel1 = new PlaylistTrack();
+            $Rel1->playlist_id = $PlaylistNueva->id;
+            $Rel1->track_id = $MUTILATION->id;
+            $Rel1->save();
+
+            $Rel2 = new PlaylistTrack();
+            $Rel2->playlist_id = $PlaylistNueva->id;
+            $Rel2->track_id = $TORN->id;
+            $Rel2->save();
+
+            $Rel3 = new PlaylistTrack();
+            $Rel3->playlist_id = $PlaylistNueva->id;
+            $Rel3->track_id = $ScreamTrack->id;
+            $Rel3->save();
+
+            $Rel4 = new PlaylistTrack();
+            $Rel4->playlist_id = $PlaylistNueva->id;
+            $Rel4->track_id = $SCREAMB->id;
+            $Rel4->save();
+
+            $Like1 = new TrackLike();
+            $Like1->user_id = $Usuario->id;
+            $Like1->track_id = $TORN->id;
+            $Like1->save();
 
         });
     }

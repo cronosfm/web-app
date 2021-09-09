@@ -38,7 +38,8 @@ Route::group(["prefix" => "tracks"] , function ()
     Route::get("/find/{id}" , [TracksController::class , "Find"]);
     Route::get("/recs" , [TracksController::class , "RecsIndex"]);
     Route::post("/" , [TracksController::class , "Store"]);
-
+    Route::post("/search" , [TracksController::class , "search"]);
+    
     
     Route::group(["middleware" => "auth:api"] , function()
     {
@@ -53,6 +54,16 @@ Route::group(["prefix" => "playlists"] , function ()
 {
     Route::get("/" , [PlaylistsController::class , "Index"]);
     Route::get("/{id}" , [PlaylistsController::class , "Find"]);
+
+    Route::group(["middleware" => "auth:api"] , function() 
+    {
+        Route::post("/" , [PlaylistsController::class , "store"]);
+        Route::delete("/{id}" , [PlaylistsController::class , "store"]);
+        Route::post("/search" , [PlaylistsController::class , "SearchPlaylistsByUser"]);
+        Route::post("/{PlayListId}/add-track/{TrackId}" , [PlaylistsController::class , "AddTrackToPlaylist"]);
+        Route::delete("/{PlayListId}/add-track/{TrackId}" , [PlaylistsController::class , "RemoveTrackFromPlaylist" ]);
+    });
+
 });
 
 Route::group(["prefix" => "albums"] , function () 

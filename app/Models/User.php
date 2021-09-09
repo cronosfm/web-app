@@ -57,4 +57,15 @@ class User extends Authenticatable
     {
         return Str::random(60);        
     }
+
+    public function Playlists()
+    {
+        return $this->hasMany(Playlist::class , "user_id" , "id");
+    }
+
+    public function LikedTracks()
+    {
+        return $this->belongsToMany(Track::class , "track_likes" , "user_id" , "track_id");
+    }
+
 }
