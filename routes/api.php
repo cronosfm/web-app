@@ -53,15 +53,20 @@ Route::group(["prefix" => "tracks"] , function ()
 Route::group(["prefix" => "playlists"] , function () 
 {
     Route::get("/" , [PlaylistsController::class , "Index"]);
-    Route::get("/{id}" , [PlaylistsController::class , "Find"]);
+    Route::get("/{id}" , [PlaylistsController::class , "Find"])->where("id" , "[0-9]+");
 
     Route::group(["middleware" => "auth:api"] , function() 
     {
         Route::post("/" , [PlaylistsController::class , "store"]);
-        Route::delete("/{id}" , [PlaylistsController::class , "store"]);
+        Route::delete("/{id}" , [PlaylistsController::class , "DeletePlaylist"])->where("id" , "[0-9]+");
         Route::post("/search" , [PlaylistsController::class , "SearchPlaylistsByUser"]);
-        Route::post("/{PlayListId}/add-track/{TrackId}" , [PlaylistsController::class , "AddTrackToPlaylist"]);
-        Route::delete("/{PlayListId}/add-track/{TrackId}" , [PlaylistsController::class , "RemoveTrackFromPlaylist" ]);
+        Route::post("/{PlayListId}/add-track/{TrackId}" , [PlaylistsController::class , "AddTrackToPlaylist"])
+            ->where("PlayListId" , "[0-9]+")
+            ->where("TrackId" , "[0-9]+");
+        Route::delete("/{PlayListId}/remove-track/{TrackId}" , [PlaylistsController::class , "RemoveTrackFromPlaylist" ])
+            ->where("PlayListId" , "[0-9]+")
+            ->where("TrackId" , "[0-9]+");
+        Route::get("/my-playlists" , [PlaylistsController::class , "IndexByUser"]);
     });
 
 });
