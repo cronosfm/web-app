@@ -13,13 +13,13 @@ class Instrument extends Migration
      */
     public function up()
     {
-        Schema::create('instruments', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('type');
-            $table->string('color');
-            $table->timestamps();
-        });
+        // Schema::create('instruments', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->string('type');
+        //     $table->string('color');
+        //     $table->timestamps();
+        // });
     }
 
     /**
