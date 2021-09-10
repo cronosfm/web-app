@@ -50,6 +50,7 @@
     </div>
     <div v-show="lista">
       <ListaComponent
+        v-bind:playlist="playlist"
         v-bind:username="username"></ListaComponent>
     </div>
 
@@ -97,6 +98,7 @@ export default {
       crear_lista: false,
       lista:false, 
       playlists : [] ,
+      playlist: ""
     }
   },
   components: {
@@ -178,6 +180,10 @@ export default {
       this.buscar = false;
       this.biblioteca = false;
       this.crear_lista = false;
+      axios.get("/api/playlists/my-playlists")
+        .then(response => {
+
+        });
       this.lista = true;
     }
   }

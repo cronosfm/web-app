@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use JsonException;
+use Playlists;
 
 class PlaylistsController extends Controller
 {
@@ -21,12 +22,12 @@ class PlaylistsController extends Controller
         return Playlist::findOrFail($id);
     }
 
-    public function IndexUser()
+    public function IndexByUser()
     {
         $User = Auth::user();
 
         $Playlists = Playlist::where("user_id" , $User->id)
-            ->with("tracks")
+            ->with("tracks.album.artist")
             ->get();
 
         return response()->json($Playlists,200);
@@ -38,7 +39,7 @@ class PlaylistsController extends Controller
 
         $Playlists = Playlist::where("user_id" , $User->id)
             ->where("name" , "ilike" , "%".$name."%" )
-            ->with("tracks")
+            ->with("tracks.albums")
             ->get();
         return response()->json($Playlists, 200);
     } 
@@ -70,6 +71,14 @@ class PlaylistsController extends Controller
 
         if($Playlist->user_id <> $User->id) throw new JsonException("No es el dueño de esta playlist" , 403);
 
+        //Obra de Satanas
+        $Relacion = DB::table("playlist_tracks")
+            ->where("track_id" , $Track->id)
+            ->where("playlist_id" , $Playlist->id)
+            ->first();
+
+        if($Relacion) throw new JsonException("Ya se ha relacionado esta rola con esta lista" , 500);
+
         $Playlist->tracks()->save($Track);
         $Playlist->load("tracks");
 
@@ -86,7 +95,16 @@ class PlaylistsController extends Controller
 
         if($Playlist->user_id <> $User->id) throw new JsonException("No es el dueño de esta playlist" , 403);
 
-        $Playlist->tracks()->save($Track);
+        //Obra de Satanas
+        $Relacion = DB::table("playlist_tracks")
+            ->where("track_id" , $Track->id)
+            ->where("playlist_id" , $Playlist->id)
+            ->first();
+
+        if(!$Relacion) throw new JsonException("Esta rola no tiene relación con la lista" , 500);
+
+
+        $Playlist->tracks()->detach($Track);
         $Playlist->load("tracks");
 
         return response()->json($Playlist , 200);
@@ -103,17 +121,24 @@ class PlaylistsController extends Controller
         $Operacion = DB::transaction( function() use($Playlist)
         {
             $Playlist->delete();
-            // Deberías eliminar los pivotes aquí.
-
         });
+
         return response()->json("Playlist Eliminado" , 200);
-
-        
-
     }
 
-    public function RenamePlaylist()
+    public function RenamePlaylist(Request $request)
     {
+        $Datos = $request->validate([
+            "name" => "string | max:255 | required" , 
+            "playlist_id" => "number"
+        ]);
 
+        /** @var Playlist $Pl */
+        $Pl = Playlist::findOrFail($Datos["playlist_id"]);
+
+        $Pl->name = $Datos["name"];
+        $Pl->save();
+
+        return response()->json($Pl , 200);
     }
 }

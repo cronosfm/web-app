@@ -9,4 +9,9 @@ class Artist extends Model
 {
     protected $table ="artists";
     use HasFactory;
+
+    public function Albums()
+    {
+        return $this->hasMany(Album::class , "artist_id" , "id");
+    }
 }
