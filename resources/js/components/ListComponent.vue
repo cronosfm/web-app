@@ -4,18 +4,20 @@
       <div id="top-left">
         <SelectButtonComponent> </SelectButtonComponent>
       </div>
-      <PerfilComponent name="Angel Rodriguez"></PerfilComponent>
+      <PerfilComponent v-bind:name="username"></PerfilComponent>
     </div>
     <div id="titlebars">
-      <img src="/images/Album.jpg" class="image" />
+      <img v-bind:src="playlist.image_url" class="image" />
       <div id="titletext">
         <a id="h6">PlayList</a>
-        <a id="h1">Canciones que te gustan</a>
-        <a id="h6">Angel Rodriguez</a>
+        <a id="h1">{{ playlist.name}}}</a>
+        <a id="h6"> ----------------- </a>
       </div>
     </div>
     <div id="subContent">
-      <div id="botonplay">
+      <div 
+        id="botonplay"
+        >
         <p id="textbutton">►</p>
       </div>
       <div id="tabla">
@@ -28,31 +30,20 @@
             <td>DURACIÓN</td>
           </tr>
           <td colspan="5" class="divider"><hr /></td>
-          <tr>
-            <td>1</td>
-            <td id="titlelist">
-              <img src="/images/Album.jpg" class="image2" />
+          <tr
+            v-for="desu in playlist.tracks"
+            v-bind:key="desu.id">
+            <td>   </td>
+            <td >
+              <img v-bind:src="desu.imagen" class="image2" />
               <div id="titlesList">
-                <a>Si tú no estás aqui</a>
-                <a>Ángeles Del Infierno</a>
+                <a>{{desu.name}}</a>
+                <a> {{desu.album.artist.name}}</a>
               </div>
             </td>
             <td>666</td>
-            <td>26 jun 2021</td>
-            <td>4:24</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td id="titlelist">
-              <img src="/images/Album.jpg" class="image2" />
-              <div id="titlesList">
-                <a>Waste of Time</a>
-                <a>Snow Tha Product</a>
-              </div>
-            </td>
-            <td>Wast of Time</td>
-            <td>3 may 2021</td>
-            <td>3:20</td>
+            <td>{{desu.created_at}}}}</td>
+            <td>01:01</td>
           </tr>
         </table>
       </div>
@@ -64,6 +55,7 @@
 import SelectButtonComponent from "./SelectButtonComponent.vue";
 import PerfilComponent from "./PerfilComponent.vue";
 export default {
+  props: ["playlist"] , 
   data() {
     return {}
   },
@@ -71,6 +63,16 @@ export default {
     SelectButtonComponent,
     PerfilComponent,
   },
+  mounted : {
+
+  }
+  ,
+  methods: {
+    ReproducirRola(Rola)
+    {
+
+    }
+  }
 };
 </script>
 

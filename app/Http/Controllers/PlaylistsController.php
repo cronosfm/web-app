@@ -27,7 +27,7 @@ class PlaylistsController extends Controller
         $User = Auth::user();
 
         $Playlists = Playlist::where("user_id" , $User->id)
-            ->with("tracks")
+            ->with("tracks.album.artist")
             ->get();
 
         return response()->json($Playlists,200);

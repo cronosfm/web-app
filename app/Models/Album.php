@@ -14,4 +14,14 @@ class Album extends Model
     {
         return $this->hasMany(Track::class , "album_id" , "id");
     }
+
+    public function Artist()
+    {
+        return $this->belongsTo(Artist::class , "artist_id" , "id");
+    }
+
+    public function Genre()
+    {
+        return $this->belongsTo(Genre::class , "genre_id" , "id");
+    }
 }
