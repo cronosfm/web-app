@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use JsonException;
+use Playlists;
 
 class PlaylistsController extends Controller
 {
@@ -121,12 +122,23 @@ class PlaylistsController extends Controller
         {
             $Playlist->delete();
         });
-        
+
         return response()->json("Playlist Eliminado" , 200);
     }
 
-    public function RenamePlaylist()
+    public function RenamePlaylist(Request $request)
     {
+        $Datos = $request->validate([
+            "name" => "string | max:255 | required" , 
+            "playlist_id" => "number"
+        ]);
 
+        /** @var Playlist $Pl */
+        $Pl = Playlist::findOrFail($Datos["playlist_id"]);
+
+        $Pl->name = $Datos["name"];
+        $Pl->save();
+
+        return response()->json($Pl , 200);
     }
 }

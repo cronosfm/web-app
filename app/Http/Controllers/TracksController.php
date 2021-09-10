@@ -41,7 +41,7 @@ class TracksController extends Controller
         $request->validate([
             "album_id"  => ["required"] , 
             "name"      => ["required"] , 
-            "track_file" => ["required" , "file"]
+            "track_file" => ["required" , "file"] , 
         ]);
 
         Album::findOrFail($request->album_id);

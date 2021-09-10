@@ -22,6 +22,8 @@ class AuthController extends Controller
             $Usuario = User::where("email" , $cosas["email"])->first();
             $Usuario->api_token =  User::GenerateToken();
             $Usuario->save();
+            Auth::login($Usuario);
+
             return $Usuario;
         }
 
@@ -51,6 +53,7 @@ class AuthController extends Controller
         $User->api_token = User::GenerateToken();
 
         $User->save();
+        Auth::login("usuario");
 
         return response($User , 200);
 
@@ -62,9 +65,10 @@ class AuthController extends Controller
          * @var User $User
          */
         $User = Auth::user();
-
         $User->api_token = null;
         $User->save();
+
+        Auth::logout();
 
         return response()->json(null , 200);
     }
