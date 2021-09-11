@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use JsonException;
 
 class TracksController extends Controller
 {
@@ -66,20 +67,51 @@ class TracksController extends Controller
     {
         $User = Auth::user();
 
+        $Rolas = $User->liked_tracks;
+
+        return response()->json($Rolas , 200);
     }
 
-    public function LikeTrack($track_id)
+    public function LikeTrack($id)
     {
+        /** @var User $User */
         $User = Auth::user();
 
-        $Track = Track::findOrFail($track_id);
+        $Track = Track::findOrFail($id);
 
-        
+        //Duhhhhhhhhhhhhhhhhhh
+
+        $Or = DB::table("track_likes")
+                ->where("user_id" , $User->id)
+                ->where("track_id" , $Track->id)
+                ->first();
+
+        if($Or) throw new JsonException("Ya le diste like a esta rola");
+
+        $User->liked_tracks()->save($Track);
+
+        return response()->json($User->liked_tracks , 200);
     }
 
-    public function UnlikeTrack()
+    public function UnlikeTrack($id)
     {
-        
+        /** @var User $User */
+        $User = Auth::user();
+
+        $Track = Track::findOrFail($id);
+
+        //Duhhhhhhhhhhhhhhhhhh
+
+        $Or = DB::table("track_likes")
+                ->where("user_id" , $User->id)
+                ->where("track_id" , $Track->id)
+                ->first();
+
+        if(!$Or) throw new JsonException("No le habías dado like a esta rola!");
+
+        $User->liked_tracks()->detach($Track);
+
+        return response()->json($User->liked_tracks , 200);
     }
 
     public function search(Request $request)
