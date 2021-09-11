@@ -9,4 +9,9 @@ class Genre extends Model
 {
     protected $table = "genres";
     use HasFactory;
+
+    public function Albums()
+    {
+        return $this->hasMany(Album::class , "genre_id" , "id");
+    }
 }
