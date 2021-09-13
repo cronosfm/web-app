@@ -185,11 +185,20 @@ export default {
 
         });
       this.lista = true;
+    } , 
+    getToken()
+    {
+      axios.get("/auth/get-token")
+      .then(response => 
+      {
+        localStorage.spoto_token = response.data;
+      })
     }
   }
   ,
   mounted() 
   {
+    this.getToken()
   }
 };
 </script>
