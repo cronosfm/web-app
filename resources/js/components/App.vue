@@ -23,8 +23,8 @@
         icon="|+|"
         v-on:click.native="crearListaView()"
       ></MenuComponent>
-      <MenuComponent name="Canciones que te gustan" icon="|♥|" v-on:click.native="listaView()"></MenuComponent>
-      <MenuComponent name="Tus episodios" icon="|8|" v-on:click.native="listaView()"></MenuComponent>
+      <MenuComponent name="Canciones que te gustan" icon="|♥|" v-on:click.native="likedView()"></MenuComponent>
+      <!-- <MenuComponent name="Tus episodios" icon="|8|" v-on:click.native="listaView()"></MenuComponent> -->
       <hr />
       <list-saved-component name="cumbias"></list-saved-component>
       <list-saved-component name="rock"></list-saved-component>
@@ -186,6 +186,20 @@ export default {
         });
       this.lista = true;
     } , 
+    likedView()
+    {
+      this.inicio = false;
+      this.buscar = false;
+      this.biblioteca = false;
+      this.crear_lista = false;
+      axios.get("/api/tracks/liked")
+        .then(response => {
+
+        });
+      this.lista = true;
+    } , 
+    }
+    ,
     getToken()
     {
       axios.get("/auth/get-token")
@@ -194,13 +208,13 @@ export default {
         localStorage.spoto_token = response.data;
       })
     }
-  }
-  ,
-  mounted() 
+    ,
+    mounted() 
   {
     this.getToken()
   }
-};
+  }
+  
 </script>
 <style>
 body {
