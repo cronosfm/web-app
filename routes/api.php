@@ -76,7 +76,7 @@ Route::group(["prefix" => "playlists"] , function ()
 Route::group(["prefix" => "albums"] , function () 
 {
     Route::get("/" , [AlbumsController::class , "Index"]);
-    Route::get("/find/{id}" , [AlbumsController::class , "Find"]);
+    Route::get("/find/{id}" , [AlbumsController::class , "Find"])->where("id" , "[0-9]+");
     Route::post("/store" , [AlbumsController::class , "Store"]);
 
 });
@@ -84,6 +84,6 @@ Route::group(["prefix" => "albums"] , function ()
 Route::group(["prefix" => "genres"] , function () 
 {
     Route::get("/" , [GenresController::class , "Index"]);
-    Route::get("/{id}" , [GenresController::class , "Find"]);
+    Route::get("/{id}" , [GenresController::class , "Find"])->where("id" , "[0-9]+");
 });
 

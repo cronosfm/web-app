@@ -5,7 +5,7 @@
             <SelectButtonComponent> </SelectButtonComponent>
             <biblioteca-component></biblioteca-component>
           </div>
-          <PerfilComponent name="Angel Rodriguez"></PerfilComponent>
+          <PerfilComponent v-bind:name="username"></PerfilComponent>
         </div>
         <h1>¡Buenas tardes!</h1>
         <div id="middle-up">
@@ -45,6 +45,10 @@ export default {
       generos : []
     }
   },
+  props : [
+    "username" , 
+  ]
+  ,
   components:{      
     CardComponent,
     PlaylistComponent,    

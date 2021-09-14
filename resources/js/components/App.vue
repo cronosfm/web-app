@@ -98,7 +98,9 @@ export default {
       crear_lista: false,
       lista:false, 
       playlists : [] ,
-      playlist: ""
+      playlist: "" , 
+      api_token : ""
+      
     }
   },
   components: {
@@ -180,6 +182,7 @@ export default {
       this.buscar = false;
       this.biblioteca = false;
       this.crear_lista = false;
+      
       axios.get("/api/playlists/my-playlists")
         .then(response => {
 
@@ -192,27 +195,26 @@ export default {
       this.buscar = false;
       this.biblioteca = false;
       this.crear_lista = false;
-      axios.get("/api/tracks/liked")
+      axios.get("/api/tracks/liked" , {headers: {"Authorization" : this.api_token}})
         .then(response => {
 
         });
       this.lista = true;
-    } , 
+    }
+
     }
     ,
-    getToken()
+    mounted() 
     {
+      
       axios.get("/auth/get-token")
       .then(response => 
       {
         localStorage.spoto_token = response.data;
+        this.api_token = `Bearer ${response.data}`;
+        console.log(this.api_token);
       })
     }
-    ,
-    mounted() 
-  {
-    this.getToken()
-  }
   }
   
 </script>

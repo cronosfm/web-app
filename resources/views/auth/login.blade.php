@@ -29,14 +29,14 @@
       <hr />
     </div>
     <div class="correo-login">
-    @if( isset($errors))
+    @if($errors)
     <p style="color: red;"> Credenciales Incorrectas</p>
     @endif
       <h3 style="color:black">Dirección de correo o nombre de usuario</h3>
       <input
         required
         name="email"
-        type="text"
+        type="email"
         id="text-input"
         placeholder="Dirección de correo o nombre de usuario"
       />
@@ -44,7 +44,7 @@
       <input 
       required
         name="password"
-        type="text" 
+        type="password" 
         id="text-input" 
         placeholder="Contraseña" />
       <a href="">¿Se te ha olvidado la contraseña?</a>

@@ -26,7 +26,8 @@ class UserAuthController extends Controller
         }
         else
         {
-            return view("/login")->with("errors" , "hola");
+            return view("/auth/login")
+                ->with("errors" , true);
         }
     }
 

@@ -21,7 +21,7 @@ class GenresController extends Controller
          */
         $Genre = Genre::findOrFail($id);
 
-        $Genre->load("Albums");
+        $Genre->load("Albums.Tracks");
 
         return response()->json($Genre);
     }

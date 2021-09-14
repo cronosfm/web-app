@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             $Usuario->name = "Usuario";
             $Usuario->birthday = "1997-05-05";
             $Usuario->gender = "male";
+            $Usuario->api_token = User::GenerateToken();
             $Usuario->save();
 
             $ImagenDefault = "images/DEFAULT.png";
