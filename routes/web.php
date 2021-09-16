@@ -26,7 +26,7 @@ Route::post("/auth/register" , [UserAuthController::class , "Register"]);
 //     return view('welcome');
 // });
 
-Route::get("/" , [PlayController::class , "index"]);    
+
 
 Route::get("/login" , function() {
     return view("auth/login");
@@ -39,6 +39,7 @@ Route::get("/register" , function() {
 
 Route::group(["middleware" => "auth"] , function()
 {
+    Route::get("/" , [PlayController::class , "index"]);    
     Route::post("/logout" , [UserAuthController::class , "Logout"])->name("logout");
 });
 
